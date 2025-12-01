@@ -3,6 +3,7 @@ package com.github.michaelbull.advent2025.day01
 import com.github.michaelbull.advent2025.Puzzle
 
 object Day01 : Puzzle<Sequence<Rotation>, Int>(day = 1) {
+
     override fun parse(lines: Sequence<String>): Sequence<Rotation> {
         return lines.map(String::toRotation)
     }
