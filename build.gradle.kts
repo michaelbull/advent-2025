@@ -3,7 +3,7 @@ version = "1.0-SNAPSHOT"
 
 plugins {
     application
-    kotlin("jvm") version "2.1.0"
+    kotlin("jvm") version "2.2.21"
 }
 
 repositories {
@@ -12,13 +12,17 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
-    implementation("com.michael-bull.kotlin-itertools:kotlin-itertools:1.0.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
+    implementation("com.michael-bull.kotlin-itertools:kotlin-itertools:1.0.2")
     testImplementation(kotlin("test"))
 }
 
 application {
     mainClass.set("com.github.michaelbull.advent2025.MainKt")
+}
+
+kotlin {
+    jvmToolchain(21)
 }
 
 tasks.test {
