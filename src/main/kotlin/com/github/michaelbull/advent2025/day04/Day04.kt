@@ -14,10 +14,10 @@ object Day04 : Puzzle<RollDiagram, Int>(day = 4) {
     )
 
     fun part1(diagram: RollDiagram): Int {
-        return diagram.totalAccessibleRolls()
+        return diagram.countAccessible()
     }
 
     fun part2(diagram: RollDiagram): Int {
-        return diagram.totalRemovableRolls()
+        return diagram.countRemovable()
     }
 }

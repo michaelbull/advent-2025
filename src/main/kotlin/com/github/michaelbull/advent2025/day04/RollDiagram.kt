@@ -15,11 +15,11 @@ class RollDiagram(private val grid: CharGrid) {
         .positions()
         .filterTo(mutableSetOf(), grid::isRollAt)
 
-    fun totalAccessibleRolls(): Int {
+    fun countAccessible(): Int {
         return rollPositions.countAccessible()
     }
 
-    fun totalRemovableRolls(): Int {
+    fun countRemovable(): Int {
         val remaining = rollPositions.toMutableSet()
         var total = 0
 
