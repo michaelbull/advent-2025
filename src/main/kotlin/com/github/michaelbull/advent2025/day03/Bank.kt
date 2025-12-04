@@ -1,7 +1,7 @@
 package com.github.michaelbull.advent2025.day03
 
 @JvmInline
-value class Bank(val string: String) {
+value class Bank(private val string: String) {
     fun maxJoltage(digits: Int): Long {
         val digitRange = 0 until digits
 
