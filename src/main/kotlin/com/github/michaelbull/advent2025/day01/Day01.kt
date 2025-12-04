@@ -15,13 +15,13 @@ object Day01 : Puzzle<Sequence<Rotation>, Int>(day = 1) {
 
     fun part1(input: Sequence<Rotation>): Int {
         return input
-            .runningFold(Dial.DEFAULT, Dial::turn)
-            .count { dial -> dial.value == 0 }
+            .turnSequence()
+            .count(Dial::isZero)
     }
 
     fun part2(input: Sequence<Rotation>): Int {
         return input
-            .runningFold(Dial.DEFAULT, Dial::turn)
+            .turnSequence()
             .sumOf(Dial::zeroClickCount)
     }
 }

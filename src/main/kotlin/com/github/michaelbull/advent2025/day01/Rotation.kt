@@ -9,6 +9,10 @@ data class Rotation(
     }
 }
 
+fun Sequence<Rotation>.turnSequence(initial: Dial = Dial.DEFAULT): Sequence<Dial> {
+    return runningFold(initial, Dial::turn)
+}
+
 fun String.toRotation(): Rotation {
     val match = requireNotNull(Rotation.REGEX.matchEntire(this)) {
         "$this must match ${Rotation.REGEX}"

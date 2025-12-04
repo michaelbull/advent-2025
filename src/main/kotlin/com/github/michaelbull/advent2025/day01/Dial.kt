@@ -9,6 +9,10 @@ data class Dial(
     val zeroClickCount: Int,
 ) {
 
+    fun isZero(): Boolean {
+        return value == 0
+    }
+
     fun turn(rotation: Rotation): Dial {
         val (direction, distance) = rotation
         val function = direction.toDialFunction()
