@@ -5,7 +5,7 @@ import com.github.michaelbull.advent2025.Puzzle
 object Day03 : Puzzle<Sequence<Bank>, Long>(day = 3) {
 
     override fun parse(lines: Sequence<String>): Sequence<Bank> {
-        return lines.filter(String::isNotBlank)
+        return lines.map(::Bank)
     }
 
     override fun solutions() = listOf(
