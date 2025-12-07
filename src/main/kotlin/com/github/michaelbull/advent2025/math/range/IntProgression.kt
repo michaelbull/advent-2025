@@ -7,11 +7,11 @@ fun Int.symmetricRange(): IntRange {
 operator fun Int.rem(progression: IntProgression): Int {
     val first = progression.first
     val last = progression.last
-    return ((this - first).rem((last - first + 1))) + first
+    return (this - first).rem(last - first + 1) + first
 }
 
 fun Int.mod(progression: IntProgression): Int {
     val first = progression.first
     val last = progression.last
-    return ((this - first).mod(last - first + 1)) + first
+    return (this - first).mod(last - first + 1) + first
 }
