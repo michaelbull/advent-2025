@@ -5,13 +5,16 @@ fun Int.symmetricRange(): IntRange {
 }
 
 operator fun Int.rem(progression: IntProgression): Int {
-    val first = progression.first
-    val last = progression.last
-    return (this - first).rem(last - first + 1) + first
+    return wrap(progression, Int::rem)
 }
 
 fun Int.mod(progression: IntProgression): Int {
+    return wrap(progression, Int::mod)
+}
+
+private inline fun Int.wrap(progression: IntProgression, operation: Int.(Int) -> Int): Int {
     val first = progression.first
-    val last = progression.last
-    return (this - first).mod(last - first + 1) + first
+    val offset = this - first
+    val size = (progression.last - first) + 1
+    return offset.operation(size) + first
 }
