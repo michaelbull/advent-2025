@@ -13,7 +13,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
-    implementation("com.michael-bull.kotlin-itertools:kotlin-itertools:1.0.2")
+    implementation("com.michael-bull.kotlin-itertools:kotlin-itertools:1.0.4")
     testImplementation(kotlin("test"))
 }
 

@@ -9,7 +9,9 @@ fun Sequence<String>.toRollDiagram(): RollDiagram {
     return RollDiagram(toCharGrid())
 }
 
-class RollDiagram(private val grid: CharGrid) {
+class RollDiagram(
+    private val grid: CharGrid,
+) {
 
     private val rollPositions: Set<Vector2> = grid
         .positions()

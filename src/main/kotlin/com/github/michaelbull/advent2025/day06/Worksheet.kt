@@ -1,8 +1,9 @@
 package com.github.michaelbull.advent2025.day06
 
-data class Worksheet(
+class Worksheet(
     val problems: List<Problem>,
 ) {
+
     inline fun sumAnswers(operands: (Problem) -> List<Operand>): Long {
         return problems.sumOf { problem ->
             problem.solve(operands(problem))

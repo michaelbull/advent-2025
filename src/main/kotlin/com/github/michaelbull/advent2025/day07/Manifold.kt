@@ -8,7 +8,7 @@ fun Sequence<String>.toManifold(): Manifold {
     return Manifold(toCharGrid())
 }
 
-data class Manifold(
+class Manifold(
     val grid: CharGrid,
 ) {
 
