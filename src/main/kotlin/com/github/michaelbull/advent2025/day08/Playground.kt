@@ -2,6 +2,7 @@ package com.github.michaelbull.advent2025.day08
 
 import com.github.michaelbull.advent2025.math.Vector2
 import com.github.michaelbull.advent2025.math.Vector3
+import com.github.michaelbull.advent2025.math.disjoint.toMutableDisjointSet
 import com.github.michaelbull.itertools.combinations
 
 fun Sequence<String>.toPlayground(): Playground {
@@ -19,22 +20,27 @@ class Playground(
 ) {
 
     fun largestCircuitsProduct(connections: Int): Long {
-        val graph = CircuitGraph(positions.size)
+        val set = positions.indices
+            .toList()
+            .toMutableDisjointSet()
 
         sortedConnections()
             .take(connections)
-            .forEach(graph::connect)
+            .forEach { (a, b) -> set.union(a, b) }
 
-        return graph.sizes()
+        return set.partitionSizes()
+            .sortedDescending()
             .take(3)
-            .fold(1L, Long::times)
+            .fold(1L) { acc, size -> acc * size }
     }
 
     fun finalConnectionProduct(): Long {
-        val graph = CircuitGraph(positions.size)
+        val set = positions.indices
+            .toList()
+            .toMutableDisjointSet()
 
         val (finalX, finalY) = sortedConnections()
-            .filter(graph::connect)
+            .filter { (a, b) -> set.union(a, b) }
             .take(positions.size - 1)
             .last()
 
@@ -51,57 +57,6 @@ class Playground(
 
     private fun straightLineDistance(connection: Vector2): Long {
         return positions[connection.x] squaredEuclideanDistanceTo positions[connection.y]
-    }
-}
-
-private class CircuitGraph(size: Int) {
-    private val circuits = IntArray(size) { it }
-    private val depths = IntArray(size) { 0 }
-
-    fun connect(connection: Vector2): Boolean {
-        val circuitX = findCircuit(connection.x)
-        val circuitY = findCircuit(connection.y)
-
-        val depthX = depths[circuitX]
-        val depthY = depths[circuitY]
-
-        return when {
-            circuitX == circuitY -> {
-                false
-            }
-
-            depthX < depthY -> {
-                circuits[circuitX] = circuitY
-                true
-            }
-
-            depthX > depthY -> {
-                circuits[circuitY] = circuitX
-                true
-            }
-
-            else -> {
-                circuits[circuitY] = circuitX
-                depths[circuitX] += 1
-                true
-            }
-        }
-    }
-
-    fun sizes(): List<Int> {
-        return circuits.indices
-            .groupingBy(::findCircuit)
-            .eachCount()
-            .values
-            .sortedDescending()
-    }
-
-    private tailrec fun findCircuit(x: Int): Int {
-        return if (circuits[x] == x) {
-            x
-        } else {
-            findCircuit(circuits[x])
-        }
     }
 }
 
