@@ -5,7 +5,7 @@ data class Rotation(
     val distance: Int,
 ) {
     companion object {
-        val REGEX = "(${Direction.REGEX})(\\d+)".toRegex()
+        val REGEX = """(${Direction.REGEX})(\d+)""".toRegex()
     }
 }
 

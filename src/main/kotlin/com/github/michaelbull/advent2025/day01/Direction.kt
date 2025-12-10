@@ -2,7 +2,7 @@ package com.github.michaelbull.advent2025.day01
 
 sealed interface Direction {
     companion object {
-        val REGEX = "[LR]".toRegex()
+        val REGEX = """[LR]""".toRegex()
     }
 }
 
