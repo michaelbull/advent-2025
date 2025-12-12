@@ -151,6 +151,10 @@ data class Vector2(
         return Vector2Range(this, other)
     }
 
+    operator fun rangeUntil(other: Vector2): Vector2Range {
+        return Vector2Range(this, other - 1)
+    }
+
     override fun compareTo(other: Vector2): Int {
         return when {
             x < other.x -> -1
